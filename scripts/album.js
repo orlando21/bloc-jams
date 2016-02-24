@@ -30,6 +30,22 @@
      ]
  };
 
+ // Greg's Example Album
+ var albumZeppelin = {
+     title: 'Houses of the Holy',
+     artist: 'Led Zeppelin',
+     label: 'Atlantic Records',
+     year: '1973',
+     albumArtUrl: 'assets/images/album_covers/HousesOfTheHoly.jpe',
+     songs: [
+         { title: 'The Song Remains the Same', duration: '6:30' },
+         { title: 'The Rain Song', duration: '7:39' },
+         { title: 'Over the Hills and Far Away', duration: '4:49'},
+         { title: 'The Crunge', duration: '3:17' },
+         { title: 'Dancing Days', duration: '3:42'}
+     ]
+ };
+
  var createSongRow = function(songNumber, songName, songLength) {
      var template =
         '<tr class="album-view-song-item">'
@@ -42,13 +58,13 @@
      return template;
  };
 
+var albumTitle = document.getElementsByClassName('album-view-title')[0];
+var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+var albumImage = document.getElementsByClassName('album-cover-art')[0];
+var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+
 var setCurrentAlbum = function(album) {
-     // #1
-     var albumTitle = document.getElementsByClassName('album-view-title')[0];
-     var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-     var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-     var albumImage = document.getElementsByClassName('album-cover-art')[0];
-     var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
  
      // #2
      albumTitle.firstChild.nodeValue = album.title;
@@ -60,11 +76,25 @@ var setCurrentAlbum = function(album) {
      albumSongList.innerHTML = '';
  
      // #4
-     for (var i' = 0; i < album.songs.length; i++) {
-         albumSongList.innerHTML += createSongRow(i + 1, album.songs[i].title, album.songs[i].length);
+     for (var i = 0; i < album.songs.length; i++) {
+         albumSongList.innerHTML += createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
      }
+    
  };
- 
- window.onload = function() {
-     setCurrentAlbum(albumPicasso);
- };
+
+
+window.onload = function() {
+    
+    setCurrentAlbum(albumPicasso);
+    albums = [albumPicasso, albumMarconi, albumZeppelin];
+    var next = 1;
+    albumImage.addEventListener('click', function(event){
+        setCurrentAlbum(albums[next]);
+        next++;
+        if (next == albums.length) {
+            next = 0;
+        }
+        });
+    
+    
+};
