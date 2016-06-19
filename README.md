@@ -3,6 +3,8 @@ This is a single page web application implemented in HTML5, CSS3, and jQuery. Th
 
 It allows you to choose among different albums and songs with play, pause, seek, and skip functionality.
 
+For more information and demo see my [portfolio](http://developer.textlogic.ch/portfolio/1-blocjams.html).
+
 ## Starting the app
 The application can be downloaded and run in any modern browser. A freeware music library loads with the application, but any library of mp3 files can be used.
 
